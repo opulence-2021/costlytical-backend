@@ -1,10 +1,10 @@
-import UserModel from "../models/UserModel.js";
+import User from "../models/User.js";
 import crypto from "crypto";
 
 //method to get a specific user's details //remove
 export const getUser = async (req, res) => {
   try {
-    const users = await UserModel.find();
+    const users = await User.find();
     res.status(200).json(users);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -16,7 +16,7 @@ export const postLogin = async (req, res) => {
   try {
     let { mailAdress, password } = req.query;
     console.log(mailAdress, password);
-    const userDocument = await UserModel.findOne({ email: mailAdress }).exec();
+    const userDocument = await User.findOne({ email: mailAdress }).exec();
 
     if (userDocument !== null) {
       console.log(userDocument);
