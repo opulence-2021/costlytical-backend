@@ -14,6 +14,6 @@ const projectSchema = mongoose.Schema({
   userId: Number,
 });
 
-const ProjectModel = mongoose.model("ProjectModel", projectSchema);
+const Project = mongoose.model("Project", projectSchema);
 
-export default ProjectModel;
+export default Project;
