@@ -1,5 +1,6 @@
 //package imports
 import express from "express";
+import fileUpload from "express-fileupload";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -11,9 +12,10 @@ import userRoutes from "./routes/user.js";
 
 const app = express();
 app.use(cors());
+app.use(fileUpload());
 
 app.use("/userName", userNameRoutes); //remove
-app.use("/Projects", projectRoutes);
+app.use("/projects", projectRoutes);
 app.use("/user", userRoutes);
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));

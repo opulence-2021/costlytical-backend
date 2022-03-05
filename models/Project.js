@@ -11,7 +11,7 @@ const projectSchema = mongoose.Schema({
     type: Date,
     default: new Date(),
   },
-  userId: Number,
+  userId: String,
 });
 
 const Project = mongoose.model("Project", projectSchema);
