@@ -9,6 +9,7 @@ import cors from "cors";
 import userNameRoutes from "./routes/userName.js"; //remove
 import projectRoutes from "./routes/projects.js";
 import userRoutes from "./routes/user.js";
+import modelRoutes from "./routes/models.js";
 
 const app = express();
 app.use(cors());
@@ -17,6 +18,7 @@ app.use(fileUpload());
 app.use("/userName", userNameRoutes); //remove
 app.use("/projects", projectRoutes);
 app.use("/user", userRoutes);
+app.use("/models", modelRoutes);
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
