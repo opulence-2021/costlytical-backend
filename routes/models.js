@@ -1,11 +1,11 @@
 // module imports
 import express from "express";
 //controller imports
-import { getModel, createModel } from "../controllers/models.js";
+import { getModels, createModel } from "../controllers/models.js";
 
 const router = express.Router();
 
-router.get("/", getModel);
+router.get("/getModels", getModels);
 router.post("/createModel", createModel);
 
 export default router;

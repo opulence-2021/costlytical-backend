@@ -3,8 +3,14 @@ import mongoose from "mongoose";
 const modelSchema = mongoose.Schema({
   modelName: String,
   modelFileLocation: String,
-  gCodeFileLocation: String,
-  gCodeFileLocationSupport: String,
+  gCodeFileLocation: {
+    type: String,
+    default: "./3Dmodels/",
+  },
+  gCodeFileLocationSupport: {
+    type: String,
+    default: "./3Dmodels/",
+  },
   modelQuantity: {
     type: Number,
     default: 1,
