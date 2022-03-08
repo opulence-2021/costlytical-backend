@@ -14,6 +14,7 @@ import modelRoutes from "./routes/models.js";
 const app = express();
 app.use(cors());
 app.use(fileUpload());
+app.use(express.json());
 
 app.use("/userName", userNameRoutes); //remove
 app.use("/projects", projectRoutes);
