@@ -46,3 +46,17 @@ jobs:
           tryKeyboard: false
           rmRemote: true
           concurrency: 5
+          
+      # Install dependencies and start server
+      - name: Installing dependencies and starting server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: | 
+            npm install
+            npm start
+            ls -lah
+            whoami
