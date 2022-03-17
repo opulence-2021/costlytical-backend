@@ -60,4 +60,4 @@ jobs:
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
             npm install
-            pm2 start index.js
+            pm2 restart index.js
