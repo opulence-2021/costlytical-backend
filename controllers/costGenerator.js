@@ -2,7 +2,7 @@
 import Model from "../models/Model.js";
 import fs from "fs";
 import child_process from "child_process";
-import { path, prusaPath } from "../path.js"; // contain the absolute path of the index.js
+import { path, sliceCommandHead, sliceCommandTail } from "../path.js"; // contain the absolute path of the index.js
 import Project from "../models/Project.js";
 
 let models; //3D models that belongs to the project
@@ -147,9 +147,8 @@ const sliceModels = async () => {
 //@pram config_File_Path - config file path for slicing
 function sliceModel(config_File_Path, stl_File_Path, Gcode_File_Path) {
   //Path of the slicer root folder
-  const slicer_path = prusaPath;
   return new Promise((resolve) => {
-    let command = `start cmd.exe /K "cd /D ${slicer_path} && prusa-slicer-console --slice --load "${config_File_Path}" --output "${Gcode_File_Path}" "${stl_File_Path}" && exit"  `;
+    let command = `${sliceCommandHead} --slice --load "${config_File_Path}" --output "${Gcode_File_Path}" "${stl_File_Path}" && exit${sliceCommandTail}`;
     let process = child_process.spawn(command, [], { shell: true });
 
     process.on("close", (code) => {
