@@ -57,6 +57,8 @@ jobs:
           port: 22
           script: | 
             cd opulanceBackend
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
             npm install
             npm start
             ls -lah
