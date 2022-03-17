@@ -7,6 +7,7 @@ import Project from "../models/Project.js";
 
 let models; //3D models that belongs to the project
 let selectedProjectId; //project id
+let projectCost = 0; //total cost of the project
 
 //method to generate cost for models of a specific project.(ex-http://localhost:5000/models/createModel?userID=5ewerewr&projectID=sample13242343423423)
 export const generateCost = async (req, res) => {
@@ -121,12 +122,14 @@ const sliceModels = async () => {
       // let printScore = 100;   //remove for testing only
 
       console.log(subTotal, lineTotal, printScore); //remove
+      projectCost = projectCost + subTotal;
 
       //6. function call to update model Database
       updateModelData(_id, subTotal, lineTotal, printScore);
     }
   }
-  //7. function call to update project Database
+
+  // 7. function call to update project Database
   // updateProjectData(selectedProjectId);
 
   //doing the following for each model =>
@@ -321,6 +324,7 @@ async function updateProjectData(projectId) {
       {
         $set: {
           projectStatus: "pending confirmation",
+          projectTotalCost: projectCost,
         },
       }
     );
