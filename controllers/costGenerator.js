@@ -83,14 +83,14 @@ const sliceModels = async () => {
     //1. function call to slice the model without support
     value = await sliceModel(
       config_file,
-      `${modelFileLocation}/${modelName}.stl`,
+      `${path}/${modelFileLocation}/${modelName}`,
       `${path}/g_codes/${projectId}/${modelName}.gcode`
     );
 
     //2. function call to slice the model with support
     value2 = await sliceModel(
       config_file_support,
-      `${modelFileLocation}/${modelName}.stl`,
+      `${path}/${modelFileLocation}/${modelName}`,
       `${path}/g_codes/${projectId}/${modelName}_supp.gcode`
     );
 
