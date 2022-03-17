@@ -70,12 +70,11 @@ export const createModel = async (req, res) => {
       try {
         // should make this file reading part async, the code is bellow
         fs.readdirSync(projectFolder).forEach((file) => {
-          let fileName = file.split(".");
-          fileName = fileName[0];
+          let fileName = file;
 
           const model = {
             modelName: fileName,
-            modelFileLocation: `${path}/3Dmodels/${userID}/${projectID}`,
+            modelFileLocation: `3Dmodels/${userID}/${projectID}`,
             projectId: projectID,
           };
 
