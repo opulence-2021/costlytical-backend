@@ -332,3 +332,7 @@ async function updateProjectData(projectId) {
     return error;
   }
 }
+
+export function sum(a, b) {
+  return a + b;
+}
