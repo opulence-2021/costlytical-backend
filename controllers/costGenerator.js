@@ -334,5 +334,5 @@ async function updateProjectData(projectId) {
 }
 
 export function sum(a, b) {
-  return a - b;
+  return a + b;
 }
