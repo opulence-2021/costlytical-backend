@@ -14,6 +14,24 @@ export const getProject = async (req, res) => {
   }
 };
 
+//method for grabbing project details through the status (ex: http://localhost:5000/projects/projectStatus?userID=621f706680ab9c3b176f9bb6&ProjectStatus=NEW ) [everything such as pending and New can be used]
+export const getProjectStatus = async (req, res) => {
+  let { userID, ProjectStatus } = req.query;
+  console.log(userID); //remove
+  console.log(ProjectStatus); //remove
+  
+  // can authorize the user using id - future improvement
+  if (typeof userID === "undefined" || typeof ProjectStatus === "undefined") {
+    return res.status(400).json({ error: "User Id or Project Status is invalid" });
+  }
+  try {
+    const projects = await Project.find({ userId: userID , projectStatus: ProjectStatus}).exec();
+    res.status(200).json(projects);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 //method to add a new project(ex-http://localhost:5000/projects/createProject?userID=621f706680ab9c3b176f9bb6&projectname=Infusion pump)
 export const createProject = async (req, res) => {
   let { userID, projectname } = req.query;
