@@ -9,7 +9,7 @@ let models; //3D models that belongs to the project
 let selectedProjectId; //project id
 let projectCost = 0; //total cost of the project
 
-//method to generate cost for models of a specific project.(ex-http://localhost:5000/models/createModel?userID=5ewerewr&projectID=sample13242343423423)
+//method to generate cost for models of a specific project.(ex-http://localhost:5000/generateCost?projectID=sample13242343423423)
 export const generateCost = async (req, res) => {
   try {
     let { projectID } = req.query;
@@ -130,7 +130,7 @@ const sliceModels = async () => {
   }
 
   // 7. function call to update project Database
-  // updateProjectData(selectedProjectId);
+  updateProjectData(selectedProjectId);
 
   //doing the following for each model =>
   //   1. call function sliceModel to slice model with support;
