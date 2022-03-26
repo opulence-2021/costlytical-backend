@@ -34,9 +34,9 @@ export const updateModels = async (req, res) => {
     try {
       for (let i = 0; i < models.length; i++) {
         let model = models[i];
-        console.log(model.id); //remove
+        // console.log(model._id); //remove
         let result = await Model.updateOne(
-          { _id: model.id },
+          { _id: model._id },
           {
             $set: {
               modelQuantity: model.modelQuantity,
