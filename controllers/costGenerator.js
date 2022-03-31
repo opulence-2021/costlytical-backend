@@ -7,10 +7,11 @@ import Project from "../models/Project.js";
 
 let models; //3D models that belongs to the project
 let selectedProjectId; //project id
-let projectCost = 0; //total cost of the project
+let projectCost; //total cost of the project
 
 //method to generate cost for models of a specific project.(ex-http://localhost:5000/generateCost?projectID=sample13242343423423)
 export const generateCost = async (req, res) => {
+  projectCost = 0;
   try {
     let { projectID } = req.query;
     selectedProjectId = projectID;
