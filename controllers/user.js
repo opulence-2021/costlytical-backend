@@ -39,3 +39,42 @@ export const postLogin = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+//method to create a new user (ex-http://localhost:5000/user/createUser) + user details in the request body
+export const createUser = async (req, res) => {
+  let userDetails;
+  let generatedPassword;
+
+  if (!req.body) {
+    return res.status(400).json({ error: "Invalid user details" });
+  } else {
+    try {
+      userDetails = req.body;
+      generatedPassword = crypto
+        .createHash("sha256")
+        .update(userDetails.password)
+        .digest("base64");
+      const reqUser = {
+        firstName: userDetails.firstName,
+        lastName: userDetails.lastName,
+        email: userDetails.email,
+        password: generatedPassword,
+        addressLine1: userDetails.addressLine1,
+        addressLine2: userDetails.addressLine2,
+        country: userDetails.country,
+        mobileNumber: userDetails.mobileNumber,
+      };
+      // console.log(reqUser); //remove
+      try {
+        const newUser = new User(reqUser);
+        await newUser.save();
+        newUser.password = undefined;
+        res.status(201).json(newUser);
+      } catch (error) {
+        res.status(409).json({ message: error.message });
+      }
+    } catch (error) {
+      return res.status(400).json({ message: error.message });
+    }
+  }
+};
