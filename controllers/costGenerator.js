@@ -39,13 +39,15 @@ export const generateCost = async (req, res) => {
   }
 };
 
-// Slicer cofiguration paths // have to modify
-const config_File_Path_L_Sup = `${path}/slicer_Config_Files/config_0.28mm_Sup.ini`;
-const config_File_Path_L_NoSup = `${path}/slicer_Config_Files/config_0.28mm_NoSup.ini`;
-const config_File_Path_M_Sup = `${path}/slicer_Config_Files/config_0.28mm_Sup.ini`;
-const config_File_Path_M_NoSup = `${path}/slicer_Config_Files/config_0.28mm_NoSup.ini`;
-const config_File_Path_S_Sup = `${path}/slicer_Config_Files/config_0.28mm_Sup.ini`;
-const config_File_Path_S_NoSup = `${path}/slicer_Config_Files/config_0.28mm_NoSup.ini`;
+// Slicer cofiguration paths
+const config_File_Path_L_Sup = `${path}/slicer_Config_Files/config_0.28.ini`;
+const config_File_Path_L_NoSup = `${path}/slicer_Config_Files/config_0.28 _NoSup.ini`;
+
+const config_File_Path_M_Sup = `${path}/slicer_Config_Files/config_0.2.ini`;
+const config_File_Path_M_NoSup = `${path}/slicer_Config_Files/config_0.2 _NoSup.ini`;
+
+const config_File_Path_S_Sup = `${path}/slicer_Config_Files/config_0.12.ini`;
+const config_File_Path_S_NoSup = `${path}/slicer_Config_Files/config_0.12_NoSup.ini`;
 
 //method to handle slicing of the models
 const sliceModels = async () => {
