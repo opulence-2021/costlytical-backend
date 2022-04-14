@@ -120,10 +120,6 @@ const sliceModels = async () => {
         result_support
       );
 
-      // let subTotal = 0;   //remove for testing only
-      // let lineTotal = 0;  //remove for testing only
-      // let printScore = 100;   //remove for testing only
-
       console.log(subTotal, lineTotal, printScore); //remove
       projectCost = projectCost + subTotal;
 
@@ -248,7 +244,7 @@ function calculateCost(modelQuantity, materialName, result, result_support) {
 }
 
 //function to calculate machining cost
-function calculateMachiningCost(printTime) {
+export function calculateMachiningCost(printTime) {
   let machiningCost =
     (machineDepCost + (elecricityCost * PrinterPowerConsumption) / 60) *
     printTime;
@@ -256,7 +252,7 @@ function calculateMachiningCost(printTime) {
 }
 
 //function to calculate material cost
-function calculatematerialCost(mass, materialName) {
+export function calculatematerialCost(mass, materialName) {
   let rawMaterialCost;
   if (materialName === "PLA+") {
     rawMaterialCost = PLAMaterialCost;
@@ -272,7 +268,7 @@ function calculatematerialCost(mass, materialName) {
 }
 
 //function to calculate post processing cost
-function calculatepostProcessingCost(supportPrintingtime, supportmass) {
+export function calculatepostProcessingCost(supportPrintingtime, supportmass) {
   const alpha = 2.1646;
   const beta = 0.1403;
   const gama = -0.404;
@@ -288,7 +284,7 @@ function calculatepostProcessingCost(supportPrintingtime, supportmass) {
 }
 
 //function to calculate printScore
-function calculatePrintabilityScore(printTime, supportPrintingtime) {
+export function calculatePrintabilityScore(printTime, supportPrintingtime) {
   let score = ((printTime - supportPrintingtime) / printTime) * 100;
   if (score > 100) {
     score = 100;

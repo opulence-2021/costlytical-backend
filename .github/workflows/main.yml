@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   workflow_dispatch:
 
 jobs:
@@ -22,17 +22,18 @@ jobs:
           rm -r .git
           rm -r .github
           rm .gitignore README.md
-          
+
       # Setting up path.js - changing path variable
       - name: Setting up path.js
         run: |
-            rm -f path.js
-            touch path.js
-            echo "export const path = '/root/opulanceBackend';
-                  export const sliceCommandHead = 'prusa-slicer'; 
-                  export const sliceCommandTail = '';
-            " >> path.js
-            cat path.js
+          rm -f path.js
+          touch path.js
+          echo "export const path = '/root/opulanceBackend';
+                export const certPath = '/etc/letsencrypt/live/backend.costlytical.live';
+                export const sliceCommandHead = 'prusa-slicer'; 
+                export const sliceCommandTail = '';
+          " >> path.js
+          cat path.js
 
       # https://github.com/marketplace/actions/copy-via-ssh
       - name: Copy content recursively to remote
@@ -46,7 +47,7 @@ jobs:
           tryKeyboard: false
           rmRemote: true
           concurrency: 5
-          
+
       # Install dependencies and start server
       - name: Installing dependencies and starting server
         uses: appleboy/ssh-action@master
@@ -55,7 +56,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.PASSWORD }}
           port: 22
-          script: | 
+          script: |
             cd opulanceBackend
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
